@@ -1,18 +1,32 @@
 import React, { Component } from 'react';
 import { Button, StyleSheet, Image, Text, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 import HomeTab from '../component/AppTabNavigator/HomeTab';
-import ProfileTab from '../component/AppTabNavigator/ProfileTab';
 import SearchTab from '../component/AppTabNavigator/SearchTab';
+import LoginTab from '../component/AppTabNavigator/LoginTab';
 
 import { MaterialCommunityIcons } from 'react-native-vector-icons';
+
+// const AppTabNavigator = createMaterialTopTabNavigator();
 
 const AppTabNavigator = createBottomTabNavigator();
 
 export default function HomeScreen() {
   return (
-    <AppTabNavigator.Navigator>
+    <AppTabNavigator.Navigator
+      tabBarOptions={{
+        animationEnabled: true,
+        swipeEnabled: true,
+        tabBarPosition: 'bottom',
+        iconStyle: { height: 100 },
+        activeTintColor: '#000',
+        inactiveTinColor: '#d1cece',
+        upperCaseLabel: true,
+        showLabel: true,
+        showIcon: true,
+      }}>
       <AppTabNavigator.Screen
         name="HomeTab"
         component={HomeTab}
@@ -35,7 +49,7 @@ export default function HomeScreen() {
       />
       <AppTabNavigator.Screen
         name="ProfileTab"
-        component={ProfileTab}
+        component={LoginTab}
         options={{
           tabBarLabel: '로그인',
           tabBarIcon: ({ color, size }) => (
